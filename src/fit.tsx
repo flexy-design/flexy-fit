@@ -124,8 +124,8 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
       ref.current.style.removeProperty("visibility");
 
     const { clientWidth, clientHeight } = ref.current;
-    if (fitTo === "width") {
-      const resizedParentHeight = ref.current.parentElement!.clientHeight;
+    if (fitTo === "width" && ref.current.parentElement) {
+      const resizedParentHeight = ref.current.parentElement.clientHeight;
       const resizedChildHeight = height * (clientWidth / width);
 
       if (!overflow && resizedChildHeight > resizedParentHeight) {
@@ -135,8 +135,8 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
         ref.current.style.transform = `scale(${clientWidth / width})`;
         if (flex) keepSyncRatio("width");
       }
-    } else if (fitTo === "height") {
-      const resizedParentWidth = ref.current.parentElement!.clientWidth;
+    } else if (fitTo === "height" && ref.current.parentElement) {
+      const resizedParentWidth = ref.current.parentElement.clientWidth;
       const resizedChildWidth = width * (clientHeight / height);
 
       if (!overflow && resizedChildWidth > resizedParentWidth) {
@@ -156,11 +156,12 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
 
   const keepSyncRatio = (fitTo: "width" | "height") => {
     if (!ref.current) return;
+    if (!ref.current.parentElement) return;
     if (width === null || height === null) return;
     const originRatio = width / height;
 
-    const resizedParentHeight = ref.current.parentElement!.clientHeight;
-    const resizedParentWidth = ref.current.parentElement!.clientWidth;
+    const resizedParentHeight = ref.current.parentElement.clientHeight;
+    const resizedParentWidth = ref.current.parentElement.clientWidth;
     const resizedParentRatio = resizedParentWidth / resizedParentHeight;
 
     if (fitTo === "width") {
