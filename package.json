@@ -1,0 +1,47 @@
+{
+  "name": "@flexy-design/flexy-fit",
+  "version": "0.1.0",
+  "description": "Easy-to-develop responsive components",
+  "type": "module",
+  "source": "src/fit.tsx",
+  "main": "./dist/fit.cjs",
+  "types": "./dist/fit.d.ts",
+  "module": "./dist/fit.module.js",
+  "unpkg": "./dist/fit.umd.js",
+  "scripts": {
+    "build": "microbundle --jsx React.createElement",
+    "dev": "microbundle watch",
+    "clean": "rm -rf dist",
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "microbundle": "^0.15.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "release-it": "^15.6.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
+  },
+  "exports": {
+    "require": "./dist/flexy.cjs",
+    "default": "./dist/flexy.modern.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flexy-design/flexy-fit.git"
+  },
+  "keywords": [],
+  "author": "flexy-design",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flexy-design/flexy-fit/issues"
+  },
+  "homepage": "https://github.com/flexy-design/flexy-fit#readme",
+  "dependencies": {
+    "@react-hook/resize-observer": "^1.2.6"
+  }
+}
