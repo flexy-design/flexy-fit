@@ -1,63 +1,104 @@
 import useResizeObserver from "@react-hook/resize-observer";
 import { ReactNode, useEffect, useRef, useState } from "react";
 
+/**
+ * Short for constructing a responsive layout.
+ *
+ *     'sm':  less than 640px
+ *     'md':  greater than 640px and less than 768px
+ *     'lg':  greater than 768px and less than 1024px
+ *     'xl':  greater than 1024px and less than 1280px
+ *     '2xl':  greater than 1280px
+ */
 export type ResponsiveType = "sm" | "md" | "lg" | "xl" | "2xl";
 
 export interface FlexyFitProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * The children to be rendered
+   * Children element to be resized and displayed.
    */
   children?: ReactNode;
   /**
-   * The width of the parent
+   * The width of the parent,
+   * If you do not specify the width,
+   * FlexyFit will measure and utilize
+   * the width of the children element.
+   *
+   * If the size of the children
+   * element is not fixed,
+   * it must be specified to work properly.
    */
-  width?: number;
+  width?: number | null;
   /**
-   * The height of the parent
+   * The height of the parent,
+   * If you do not specify the height,
+   * FlexyFit will measure and utilize
+   * the height of the children element.
+   *
+   * If the size of the children
+   * element is not fixed,
+   * it must be specified to work properly.
    */
-  height?: number;
+  height?: number | null;
   /**
-   * The type of fit to use
+   * Decide whether to fit the width or height.
+   * Significant only when overflow is true.
    */
   fitTo?: "width" | "height" | null;
   /**
-   * Whether to allow the child to overflow the parent
+   * Whether to allow the child
+   * to overflow the parent.
+   * For example, it is useful to create
+   * a scrollable object that
+   * fills the entire screen.
    */
   overflow?: boolean;
   /**
-   * Full width and height
+   * Fill width and height with px.
+   * If you don't specify a px properties
+   * FlexyFit will default to 100%
+   * (both of width and height).
+   *
+   * However, if you're using FlexyFit
+   * to fill the entire screen or
+   * if you need to adjust it to fit
+   * the screen using Ctrl +/-,
+   * it's helpful to use px.
    */
   px?: boolean;
   /**
-   * Whether to render a border around the child
+   * Adjust the ratio so that the size
+   * ratio of the element is
+   * appropriate for the screen.
+   *
+   * Use flex properties within the child element
+   * only if it is possible to respond to it.
    */
   flex?: boolean;
   /**
-   * The horizontal origin of the child
+   * The horizontal origin of the child (Default is center)
    */
   horizontalOrigin?: "left" | "center" | "right";
   /**
-   * The vertical origin of the child
+   * The vertical origin of the child (Default is center)
    */
   verticalOrigin?: "top" | "center" | "bottom";
   /**
-   * The responsive type
+   * Displays the component only in the selected size.
+   *
+   *     'sm':  less than 640px
+   *     'md':  greater than 640px and less than 768px
+   *     'lg':  greater than 768px and less than 1024px
+   *     'xl':  greater than 1024px and less than 1280px
+   *     '2xl':  greater than 1280px
+   *
+   * @example
+   * responsive={['sm']} // less than 640px
+   * responsive={['md', 'lg']} // greater than 640px and less than 1024px
+   * responsive={['xl', '2xl']} // greater than 1024px
    */
   responsive?: ResponsiveType[];
 }
 
-/**
- * The FlexyFit component is a component that resizes the child element to fit within the parent element
- * @param {Object} props - The props of the component
- * @param {ReactNode} props.children - The children to be rendered
- * @param {number} props.width - The width of the parent
- * @param {number} props.height - The height of the parent
- * @param {string} props.fitTo - The type of fit to use
- * @param {boolean} props.overflow - Whether to allow the child to overflow the parent
- * @param {boolean} props.flex - Whether to render a border around the child
- * @param {string} props.horizontalOrigin - The horizontal origin of the child
- * @param {string} props.verticalOrigin - The vertical origin of the child
- */
 const FlexyFitInternal = (props: FlexyFitProps) => {
   const {
     children,
@@ -231,6 +272,12 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
   );
 };
 
+/**
+ * FlexyFit is a library that makes it
+ * easy to apply responsive layout
+ * to elements with fixed size.
+ * @link https://github.com/flexy-design/flexy-fit
+ */
 export const FlexyFit = (props: FlexyFitProps) => {
   const { responsive, children, ...rest } = props;
   const [responsiveView, setResponsiveView] = useState(false);
