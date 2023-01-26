@@ -291,12 +291,12 @@ export const FlexyFit = (props: FlexyFitProps) => {
     };
   }, [props]);
 
-  return (
-    responsiveView && (
-      <FlexyFitInternal {...rest} fitTo="width">
-        {children}
-      </FlexyFitInternal>
-    )
+  return responsiveView ? (
+    <FlexyFitInternal {...rest} fitTo="width">
+      {children}
+    </FlexyFitInternal>
+  ) : (
+    <></>
   );
 };
 
