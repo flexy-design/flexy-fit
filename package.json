@@ -3,11 +3,11 @@
   "version": "1.0.4",
   "description": "Easy-to-develop responsive components",
   "type": "module",
-  "source": "src/fit.tsx",
-  "main": "./dist/fit.cjs",
-  "types": "./dist/fit.d.ts",
-  "module": "./dist/fit.module.js",
-  "unpkg": "./dist/fit.umd.js",
+  "source": "src/FlexyFit.tsx",
+  "main": "./dist/FlexyFit.cjs",
+  "types": "./dist/FlexyFit.d.ts",
+  "module": "./dist/FlexyFit.module.js",
+  "unpkg": "./dist/FlexyFit.umd.js",
   "scripts": {
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch",
@@ -27,8 +27,8 @@
     "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "exports": {
-    "require": "./dist/fit.cjs",
-    "default": "./dist/fit.modern.js"
+    "require": "./dist/FlexyFit.cjs",
+    "default": "./dist/FlexyFit.modern.js"
   },
   "repository": {
     "type": "git",
