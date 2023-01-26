@@ -195,7 +195,7 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     resize();
   });
 
-  useResizeObserver(ref.current!.parentElement, () => {
+  useResizeObserver(ref.current?.parentElement ?? null, () => {
     parentResize();
   });
 
