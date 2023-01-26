@@ -1,6 +1,6 @@
 {
   "name": "@flexy-design/flexy-fit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Easy-to-develop responsive components",
   "type": "module",
   "source": "src/fit.tsx",
