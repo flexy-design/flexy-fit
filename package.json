@@ -27,8 +27,8 @@
     "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "exports": {
-    "require": "./dist/flexy.cjs",
-    "default": "./dist/flexy.modern.js"
+    "require": "./dist/fit.cjs",
+    "default": "./dist/fit.modern.js"
   },
   "repository": {
     "type": "git",
