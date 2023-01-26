@@ -12,7 +12,7 @@
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch",
     "clean": "rm -rf dist",
-    "release": "release-it"
+    "release": "npm run build && release-it"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
@@ -43,5 +43,10 @@
   "homepage": "https://github.com/flexy-design/flexy-fit#readme",
   "dependencies": {
     "@react-hook/resize-observer": "^1.2.6"
+  },
+  "release-it": {
+    "hooks": {
+      "before:init": "npm run build"
+    }
   }
 }
