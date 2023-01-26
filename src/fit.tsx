@@ -97,6 +97,34 @@ export interface FlexyFitProps extends React.HTMLAttributes<HTMLDivElement> {
    * responsive={['xl', '2xl']} // greater than 1024px
    */
   responsive?: ResponsiveType[];
+  /**
+   * The breakpoint at which
+   * the component is displayed.
+   * This property can be set in
+   * more detail than the responsive property.
+   *
+   * @example
+   * breakpoint={{
+   *  width: {
+   *    min: 640, // greater than 640px
+   *    max: 1024, // less than 1024px
+   *  },
+   *  height: {
+   *    min: 768, // greater than 768px
+   *    max: 1280, // less than 1280px
+   *  },
+   * }}
+   */
+  breakpoint?: {
+    width?: {
+      min?: number;
+      max?: number;
+    };
+    height?: {
+      min?: number;
+      max?: number;
+    };
+  };
 }
 
 const FlexyFitInternal = (props: FlexyFitProps) => {
@@ -279,8 +307,9 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
  * @link https://github.com/flexy-design/flexy-fit
  */
 export const FlexyFit = (props: FlexyFitProps) => {
-  const { responsive, children, ...rest } = props;
+  const { responsive, breakpoint, children, ...rest } = props;
   const [responsiveView, setResponsiveView] = useState(false);
+  const [breakpointView, setBreakpointView] = useState(false);
   const checkResponsive = () => {
     if (!responsive || responsive.length === 0) {
       setResponsiveView(true);
@@ -330,8 +359,54 @@ export const FlexyFit = (props: FlexyFitProps) => {
     setResponsiveView(false);
   };
 
+  const checkBreakpoint = () => {
+    if (!breakpoint) {
+      setBreakpointView(true);
+      return;
+    }
+    if (typeof window === "undefined") return;
+
+    let condition = true;
+    if (breakpoint.width) {
+      if (
+        breakpoint.width.max !== undefined &&
+        breakpoint.width.max !== null &&
+        window.innerWidth > breakpoint.width.max
+      ) {
+        condition = false;
+      }
+      if (
+        breakpoint.width.min !== undefined &&
+        breakpoint.width.min !== null &&
+        window.innerWidth < breakpoint.width.min
+      ) {
+        condition = false;
+      }
+    }
+
+    if (breakpoint.height) {
+      if (
+        breakpoint.height.max !== undefined &&
+        breakpoint.height.max !== null &&
+        window.innerHeight > breakpoint.height.max
+      ) {
+        condition = false;
+      }
+      if (
+        breakpoint.height.min !== undefined &&
+        breakpoint.height.min !== null &&
+        window.innerHeight < breakpoint.height.min
+      ) {
+        condition = false;
+      }
+    }
+
+    setResponsiveView(condition);
+  };
+
   useEffect(() => {
     checkResponsive();
+    checkBreakpoint();
     if (typeof window === "undefined") return;
     window.addEventListener("resize", checkResponsive);
     return () => {
@@ -339,7 +414,7 @@ export const FlexyFit = (props: FlexyFitProps) => {
     };
   }, [props]);
 
-  return responsiveView ? (
+  return responsiveView && breakpointView ? (
     <FlexyFitInternal {...rest} fitTo="width">
       {children}
     </FlexyFitInternal>
