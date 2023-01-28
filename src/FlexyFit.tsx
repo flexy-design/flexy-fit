@@ -117,9 +117,7 @@ export const FlexyFit = (props: FlexyFitProps) => {
   }, [props]);
 
   return responsiveView && breakpointView ? (
-    <FlexyFitInternal {...rest} fitTo="width">
-      {children}
-    </FlexyFitInternal>
+    <FlexyFitInternal {...rest}>{children}</FlexyFitInternal>
   ) : (
     <></>
   );
