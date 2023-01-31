@@ -159,7 +159,12 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
           fullParentHeight && { height: fullParentHeight }),
         ...(initialHeight !== null && !px && { width: "100%", height: "100%" }),
         visibility: "hidden",
+
+        // Safari renders visibility a hidden property in the parent element,
+        // but if the child element has a visible property,
+        // it will render it. Therefore, temporarily apply opacity.
         opacity: 0,
+
         transformOrigin: `${verticalOrigin ?? "center"} ${
           horizontalOrigin ?? "center"
         }`,
