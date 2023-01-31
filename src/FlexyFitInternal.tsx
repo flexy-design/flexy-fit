@@ -64,8 +64,10 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     if (width === null || height === null) return;
 
     if (initialWidth === null || initialHeight === null) return;
-    if (ref.current.style.visibility === "hidden")
+    if (ref.current.style.visibility === "hidden") {
       ref.current.style.removeProperty("visibility");
+      ref.current.style.removeProperty("opacity");
+    }
 
     const { clientWidth, clientHeight } = ref.current;
     if (fitTo === "width" && ref.current.parentElement) {
@@ -157,6 +159,7 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
           fullParentHeight && { height: fullParentHeight }),
         ...(initialHeight !== null && !px && { width: "100%", height: "100%" }),
         visibility: "hidden",
+        opacity: 0,
         transformOrigin: `${verticalOrigin ?? "center"} ${
           horizontalOrigin ?? "center"
         }`,
