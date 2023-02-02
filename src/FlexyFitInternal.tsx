@@ -134,9 +134,24 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     }
   };
 
-  useEffect(resize, [props, ...(deps ?? [])]);
+  // * Scaling adjustment according to re-rendering or props change
+  useEffect(resize, [props]);
+
+  // * Scaling adjustment according to screen size change
   useResizeObserver(ref, resize);
+
+  // * Scaling adjustment according to parent size change
   useResizeObserver(ref.current?.parentElement ?? null, parentResize);
+
+  // * Re-measurement of size according to change in deps
+  useEffect(() => {
+    if (!deps) return;
+    setInitialWidth(null);
+    setInitialHeight(null);
+    setFullParentWidth(null);
+    setFullParentHeight(null);
+    resize();
+  }, deps);
 
   return (
     <div
