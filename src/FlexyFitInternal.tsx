@@ -15,6 +15,7 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     horizontalOrigin,
     verticalOrigin,
     responsive,
+    deps,
     ...rest
   } = props;
 
@@ -133,17 +134,9 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     }
   };
 
-  useEffect(() => {
-    resize();
-  }, [props]);
-
-  useResizeObserver(ref, () => {
-    resize();
-  });
-
-  useResizeObserver(ref.current?.parentElement ?? null, () => {
-    parentResize();
-  });
+  useEffect(resize, [props, ...(deps ?? [])]);
+  useResizeObserver(ref, resize);
+  useResizeObserver(ref.current?.parentElement ?? null, parentResize);
 
   return (
     <div

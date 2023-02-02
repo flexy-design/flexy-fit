@@ -124,4 +124,10 @@ export interface FlexyFitProps extends React.HTMLAttributes<HTMLDivElement> {
       max?: number;
     };
   };
+
+  /**
+   * FlexyFit will re-measure its size
+   * if a change occurs in the relevant deps.
+   */
+  deps?: React.DependencyList;
 }
