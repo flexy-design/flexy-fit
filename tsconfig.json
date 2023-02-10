@@ -18,6 +18,10 @@
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "jsxFactory": "",
-    "jsxFragmentFactory": ""
-  }
+    "jsxFragmentFactory": "",
+  },
+  "include": [
+    "src/types.ts",
+    "node_modules/microbundle/index.d.ts"
+  ]
 }

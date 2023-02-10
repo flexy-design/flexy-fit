@@ -1,6 +1,7 @@
 import type { FlexyFitProps } from "./types";
 import { useEffect, useState } from "react";
 import FlexyFitInternal from "./FlexyFitInternal";
+import React from "react";
 
 /**
  * FlexyFit is a library that makes it

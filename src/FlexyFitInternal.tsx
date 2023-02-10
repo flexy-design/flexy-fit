@@ -1,6 +1,7 @@
 import type { FlexyFitProps } from "./types";
 import useResizeObserver from "@react-hook/resize-observer";
 import { useEffect, useRef, useState } from "react";
+import React from "react";
 
 const FlexyFitInternal = (props: FlexyFitProps) => {
   const {
