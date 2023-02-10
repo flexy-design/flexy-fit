@@ -16,6 +16,7 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     verticalOrigin,
     responsive,
     deps,
+    resizable,
     ...rest
   } = props;
 
@@ -152,6 +153,20 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     setFullParentHeight(null);
     resize();
   }, deps);
+
+  useEffect(() => {
+    const onResizable = () => {
+      if (!resizable) return;
+      setInitialWidth(null);
+      setInitialHeight(null);
+      setFullParentWidth(null);
+      setFullParentHeight(null);
+      resize();
+    };
+
+    window.addEventListener("resize", onResizable);
+    return () => window.removeEventListener("resize", onResizable);
+  }, [resizable]);
 
   return (
     <div

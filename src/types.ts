@@ -130,4 +130,11 @@ export interface FlexyFitProps extends React.HTMLAttributes<HTMLDivElement> {
    * if a change occurs in the relevant deps.
    */
   deps?: React.DependencyList;
+
+  /**
+   * Set this option to true if the HTML element is resizable.
+   * It will remeasure every time it changes size.
+   * (Default: false)
+   */
+  resizable?: boolean;
 }
