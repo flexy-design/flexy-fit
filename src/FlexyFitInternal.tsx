@@ -48,8 +48,10 @@ const FlexyFitInternal = (props: FlexyFitProps) => {
     if (!ref.current) return;
 
     if (ref.current.clientWidth !== 0 && ref.current.clientHeight !== 0) {
-      if (initialWidth === null) setInitialWidth(ref.current.clientWidth);
-      if (initialHeight === null) setInitialHeight(ref.current.clientHeight);
+      if (initialWidth === null)
+        setInitialWidth(ref.current.children[0].clientWidth);
+      if (initialHeight === null)
+        setInitialHeight(ref.current.children[0].clientHeight);
     }
 
     const parent = ref.current?.parentElement;
