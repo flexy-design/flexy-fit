@@ -12,7 +12,8 @@
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch",
     "clean": "rm -rf dist",
-    "release": "release-it"
+    "release": "release-it",
+    "e2e": "cd ./e2e && npm start"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
