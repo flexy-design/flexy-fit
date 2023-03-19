@@ -9,7 +9,7 @@
   "module": "./dist/FlexyFit.module.js",
   "unpkg": "./dist/FlexyFit.umd.js",
   "scripts": {
-    "build": "microbundle --jsx React.createElement",
+    "build": "microbundle build --jsx React.createElement --globals react/jsx-runtime=jsxRuntime,@react-hook/resize-observer=useResizeObserver",
     "dev": "microbundle watch",
     "clean": "rm -rf dist",
     "release": "release-it",
@@ -24,8 +24,8 @@
     "release-it": "^15.6.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "exports": {
     "require": "./dist/FlexyFit.cjs",
