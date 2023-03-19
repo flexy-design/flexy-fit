@@ -21,6 +21,7 @@
     "jsxFragmentFactory": "",
   },
   "include": [
+    "src",
     "src/types.ts",
     "node_modules/microbundle/index.d.ts"
   ]
